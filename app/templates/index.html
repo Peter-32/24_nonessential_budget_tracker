@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+  <form>
+    <label for="salary">Monthly Net Earnings:</label>
+    <input type="text" name="salary" id="salary"><br>
+    <p>Next fill out your monthly purchases that don't change</p>
+
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Monthly Purchase</th>
+          <th scope="col">Cost</th>
+          <th scope="col">Category</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td><input type="text" name="purchase1" id="purchase1" placeholder="Rent"><br></td>
+          <td><input type="text" name="cost1" id="cost1" placeholder="500"><br></td>
+          <td><select name="category1" id="category1">
+                <option value="need">Need</option>
+                <option value="want">Want</option>
+              </select>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td><input type="text" name="purchase2" id="purchase2" placeholder=""><br></td>
+          <td><input type="text" name="cost2" id="cost2" placeholder=""><br></td>
+          <td><select name="category2" id="category2">
+                <option value="need">Need</option>
+                <option value="want">Want</option>
+              </select>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td><input type="text" name="purchase3" id="purchase3" placeholder=""><br></td>
+          <td><input type="text" name="cost3" id="cost3" placeholder=""><br></td>
+          <td><select name="category3" id="category1">
+                <option value="need">Need</option>
+                <option value="want">Want</option>
+              </select>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+
+  </form>
+
+
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</body>
+</html>
