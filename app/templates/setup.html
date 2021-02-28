@@ -11,7 +11,7 @@
   <form>
     <label for="salary">Monthly Net Earnings:</label>
     <input type="text" name="salary" id="salary" value="{{setup['earnings']}}"><br>
-    <p>Next fill in what purchases always occur each month:</p>
+    <p>Next, fill in what purchases always occur each month:</p>
 
 
     <table class="table">
@@ -207,7 +207,7 @@
       </tbody>
     </table>
 
-    <button type="button" class="btn btn-info">Calculate how much remains.</button>
+    <button type="button" class="btn btn-info" onclick="sumInputs()">Calculate how much remains.</button>
     <span id="total">0</span><br>
     <label for="saving">How much do you want to save?</label>
     <input type="text" name="saving" id="saving"><br>
@@ -221,23 +221,16 @@
   <!-- Latest compiled and minified JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   <script>
-  window.sumInputs = function() {
-      var inputs = document.getElementsByTagName('input'),
-          result = document.getElementById('total'),
-          sum = 0;
-
-      for(var i=0; i<inputs.length; i++) {
-          var ip = inputs[i];
-
-          if (ip.name && ip.name.indexOf("total") < 0) {
-              sum += parseInt(ip.value) || 0;
-          }
-
-      }
-
-      result.value = sum;
-  }​
-
+  console.log("ABC")
+  function sumInputs() {
+    sum = 0
+    for(var i=1; i<11; i++) {
+      parsed = parseInt(document.getElementById('cost'.concat(i)), 10)
+      if (isNaN(parsed)) { continue; }
+      else {sum += parsed}
+    }
+    alert(sum)
+  }
   </script>
 </body>
 </html>

@@ -13,7 +13,7 @@ def index():
 @app.route('/setup')
 def setup():
     setup = {'earnings': "2100",
-             'purchase1': "1", 'cost1': "1", 'category1': "want",
+             'purchase1': "Rent", 'cost1': "500", 'category1': "need",
              'purchase2': "", 'cost2': "", 'category2': "need",
              'purchase3': "", 'cost3': "", 'category3': "need",
              'purchase4': "", 'cost4': "", 'category4': "need",
