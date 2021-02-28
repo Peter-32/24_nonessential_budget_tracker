@@ -27,7 +27,7 @@
         <tr>
           <th scope="row">1</th>
           <td><input type="text" name="purchase1" id="purchase1" placeholder="Rent" value="{{setup['purchase1']}}"><br></td>
-          <td><input type="text" name="cost1" id="cost1" placeholder="500" value="{{setup['cost1']}}"><br></td>
+          <td><input type="text" name="cost1" id="cost1" placeholder="500" onfocusout="sumInputs()" value="{{setup['cost1']}}"><br></td>
           <td><select name="category1" id="category1">
             {% if setup['category1'] == 'need' %}
               <option value="need" selected>Need</option>
@@ -45,7 +45,7 @@
         <tr>
           <th scope="row">2</th>
           <td><input type="text" name="purchase2" id="purchase2" placeholder="Rent" value="{{setup['purchase2']}}"><br></td>
-          <td><input type="text" name="cost2" id="cost2" placeholder="500" value="{{setup['cost2']}}"><br></td>
+          <td><input type="text" name="cost2" id="cost2" placeholder="500" onfocusout="sumInputs()" value="{{setup['cost2']}}"><br></td>
           <td><select name="category2" id="category2">
             {% if setup['category2'] == 'need' %}
               <option value="need" selected>Need</option>
@@ -63,7 +63,7 @@
         <tr>
           <th scope="row">3</th>
           <td><input type="text" name="purchase3" id="purchase3" placeholder="Rent" value="{{setup['purchase3']}}"><br></td>
-          <td><input type="text" name="cost3" id="cost3" placeholder="500" value="{{setup['cost3']}}"><br></td>
+          <td><input type="text" name="cost3" id="cost3" placeholder="500" onfocusout="sumInputs()" value="{{setup['cost3']}}"><br></td>
           <td><select name="category3" id="category3">
             {% if setup['category3'] == 'need' %}
               <option value="need" selected>Need</option>
@@ -81,7 +81,7 @@
         <tr>
           <th scope="row">4</th>
           <td><input type="text" name="purchase4" id="purchase4" placeholder="Rent" value="{{setup['purchase4']}}"><br></td>
-          <td><input type="text" name="cost4" id="cost4" placeholder="500" value="{{setup['cost4']}}"><br></td>
+          <td><input type="text" name="cost4" id="cost4" placeholder="500" onfocusout="sumInputs()" value="{{setup['cost4']}}"><br></td>
           <td><select name="category4" id="category4">
             {% if setup['category4'] == 'need' %}
               <option value="need" selected>Need</option>
@@ -99,7 +99,7 @@
         <tr>
           <th scope="row">5</th>
           <td><input type="text" name="purchase5" id="purchase5" placeholder="Rent" value="{{setup['purchase5']}}"><br></td>
-          <td><input type="text" name="cost5" id="cost5" placeholder="500" value="{{setup['cost5']}}"><br></td>
+          <td><input type="text" name="cost5" id="cost5" placeholder="500" onfocusout="sumInputs()" value="{{setup['cost5']}}"><br></td>
           <td><select name="category5" id="category5">
             {% if setup['category5'] == 'need' %}
               <option value="need" selected>Need</option>
@@ -117,7 +117,7 @@
         <tr>
           <th scope="row">6</th>
           <td><input type="text" name="purchase6" id="purchase6" placeholder="Rent" value="{{setup['purchase6']}}"><br></td>
-          <td><input type="text" name="cost6" id="cost6" placeholder="500" value="{{setup['cost6']}}"><br></td>
+          <td><input type="text" name="cost6" id="cost6" placeholder="500" onfocusout="sumInputs()" value="{{setup['cost6']}}"><br></td>
           <td><select name="category6" id="category6">
             {% if setup['category6'] == 'need' %}
               <option value="need" selected>Need</option>
@@ -135,7 +135,7 @@
         <tr>
           <th scope="row">7</th>
           <td><input type="text" name="purchase7" id="purchase7" placeholder="Rent" value="{{setup['purchase7']}}"><br></td>
-          <td><input type="text" name="cost7" id="cost7" placeholder="500" value="{{setup['cost7']}}"><br></td>
+          <td><input type="text" name="cost7" id="cost7" placeholder="500" onfocusout="sumInputs()" value="{{setup['cost7']}}"><br></td>
           <td><select name="category7" id="category7">
             {% if setup['category7'] == 'need' %}
               <option value="need" selected>Need</option>
@@ -153,7 +153,7 @@
         <tr>
           <th scope="row">8</th>
           <td><input type="text" name="purchase8" id="purchase8" placeholder="Rent" value="{{setup['purchase8']}}"><br></td>
-          <td><input type="text" name="cost8" id="cost8" placeholder="500" value="{{setup['cost8']}}"><br></td>
+          <td><input type="text" name="cost8" id="cost8" placeholder="500" onfocusout="sumInputs()" value="{{setup['cost8']}}"><br></td>
           <td><select name="category8" id="category8">
             {% if setup['category8'] == 'need' %}
               <option value="need" selected>Need</option>
@@ -171,7 +171,7 @@
         <tr>
           <th scope="row">9</th>
           <td><input type="text" name="purchase9" id="purchase9" placeholder="Rent" value="{{setup['purchase9']}}"><br></td>
-          <td><input type="text" name="cost9" id="cost9" placeholder="500" value="{{setup['cost9']}}"><br></td>
+          <td><input type="text" name="cost9" id="cost9" placeholder="500" onfocusout="sumInputs()" value="{{setup['cost9']}}"><br></td>
           <td><select name="category9" id="category9">
             {% if setup['category9'] == 'need' %}
               <option value="need" selected>Need</option>
@@ -189,7 +189,7 @@
         <tr>
           <th scope="row">10</th>
           <td><input type="text" name="purchase10" id="purchase10" placeholder="Rent" value="{{setup['purchase10']}}"><br></td>
-          <td><input type="text" name="cost10" id="cost10" placeholder="500" value="{{setup['cost10']}}"><br></td>
+          <td><input type="text" name="cost10" id="cost10" placeholder="500" onfocusout="sumInputs()" value="{{setup['cost10']}}"><br></td>
           <td><select name="category10" id="category10">
             {% if setup['category10'] == 'need' %}
               <option value="need" selected>Need</option>
@@ -207,8 +207,9 @@
       </tbody>
     </table>
 
-    <button type="button" class="btn btn-info" onclick="sumInputs()">Calculate how much remains.</button>
-    <span id="total">0</span><br>
+    <span>How much remains: </span><span id="total_calculation">1600</span><br>
+    <p>What remains is split between saving and purchases.</p>
+
     <label for="saving">How much do you want to save?</label>
     <input type="text" name="saving" id="saving"><br>
     <button type="button" class="btn btn-success">Save Setup</button>
@@ -224,13 +225,16 @@
   console.log("ABC")
   function sumInputs() {
     sum = 0
+    parsed = parseInt(document.getElementById('salary').value, 10)
+    if (isNaN(parsed)) {  }
+    else {sum += parsed}
     for(var i=1; i<11; i++) {
-      console.log(document.getElementById('cost'.concat(i)))
-      parsed = parseInt(document.getElementById('cost'.concat(i)), 10)
+      parsed = parseInt(document.getElementById('cost'.concat(i)).value, 10)
       if (isNaN(parsed)) { continue; }
-      else {sum += parsed}
+      else {sum -= parsed}
     }
-    console.log(sum)
+    if (sum < 0) { sum = 0}
+    document.getElementById("total_calculation").innerHTML = sum;
   }
   </script>
 </body>
