@@ -23,8 +23,6 @@ def setup():
              'purchase8': "", 'cost8': "", 'category8': "need",
              'purchase9': "", 'cost9': "", 'category9': "need",
              'purchase10': "", 'cost10': "", 'category10': "need",
-             'purchase11': "", 'cost11': "", 'category11': "need",
-             'purchase12': "", 'cost12': "", 'category12': "need",
              'saving': ""
              }
     return render_template("setup.html", setup=setup)
