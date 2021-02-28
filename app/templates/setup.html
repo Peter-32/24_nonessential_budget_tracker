@@ -203,11 +203,12 @@
             {% endif %}
               </select>
           </td>
-        </tr>        
+        </tr>
       </tbody>
     </table>
 
-    <button type="button" class="btn btn-info">Calculate how much remains.</button><br>
+    <button type="button" class="btn btn-info">Calculate how much remains.</button>
+    <span id="total">0</span><br>
     <label for="saving">How much do you want to save?</label>
     <input type="text" name="saving" id="saving"><br>
     <button type="button" class="btn btn-success">Save Setup</button>
@@ -215,10 +216,28 @@
 
   </form>
 
-
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <!-- Latest compiled and minified JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script>
+  window.sumInputs = function() {
+      var inputs = document.getElementsByTagName('input'),
+          result = document.getElementById('total'),
+          sum = 0;
+
+      for(var i=0; i<inputs.length; i++) {
+          var ip = inputs[i];
+
+          if (ip.name && ip.name.indexOf("total") < 0) {
+              sum += parseInt(ip.value) || 0;
+          }
+
+      }
+
+      result.value = sum;
+  }​
+
+  </script>
 </body>
 </html>
