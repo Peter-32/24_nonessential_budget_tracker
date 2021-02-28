@@ -225,11 +225,12 @@
   function sumInputs() {
     sum = 0
     for(var i=1; i<11; i++) {
+      console.log(document.getElementById('cost'.concat(i)))
       parsed = parseInt(document.getElementById('cost'.concat(i)), 10)
       if (isNaN(parsed)) { continue; }
       else {sum += parsed}
     }
-    alert(sum)
+    console.log(sum)
   }
   </script>
 </body>
