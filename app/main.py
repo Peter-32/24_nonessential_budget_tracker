@@ -1,4 +1,5 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
+import pandas as pd
 app = Flask(__name__)
 # with open("/Users/petermyers/Desktop/high_quality_programs/24_nonessential_budget_tracker/secrets.txt") as file:
 #     google_data = file.read().split()
@@ -29,7 +30,12 @@ def setup():
 
 @app.route('/save-setup', methods = ['POST'])
 def save_setup():
-    pass
+    result = request.form.to_dict(flat=True)
+    print(result)
+    result = {k: [v] for (k, v) in result.items()}
+    df = pd.DataFrame(result)
+    df.to_csv("data.csv")
+    return render_template("index.html")
 
 
 
