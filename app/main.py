@@ -27,7 +27,9 @@ def setup():
              }
     return render_template("setup.html", setup=setup)
 
-
+@app.route('/save-setup', methods = ['POST'])
+def save_setup():
+    pass
 
 
 

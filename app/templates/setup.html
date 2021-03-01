@@ -8,7 +8,7 @@
 </head>
 <body>
 <h2>Setup</h2>
-  <form>
+  <form action="/save-setup" method="POST">
     <label for="salary">Monthly Net Earnings:</label>
     <input type="text" name="salary" id="salary" value="{{setup['earnings']}}"><br>
     <p>Next, fill in what purchases always occur each month:</p>
@@ -212,8 +212,7 @@
 
     <label for="saving">How much do you want to save?</label>
     <input type="text" name="saving" id="saving"><br>
-    <button type="button" class="btn btn-success">Save Setup</button>
-
+    <button type="submit" class="btn btn-success", value="Submit">Save Setup</button>
 
   </form>
 
