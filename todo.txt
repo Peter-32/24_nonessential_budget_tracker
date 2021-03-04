@@ -1,5 +1,8 @@
-Setup page (earnings, purchases, savings, present daily spend)
-Pacing page and record spending (Graph for how much I can spend)
-Wishlist of items I want
+(/) Setup page (earnings, purchases, savings, present daily spend)
+Pacing page and record spending (Graph for how much I can spend) & Wishlist of items I want
 Read/write to a CSV for a database
 Login
+
+
+
+New JS file -> Mac: Cmd+Shift+R

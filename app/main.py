@@ -7,6 +7,7 @@ app = Flask(__name__)
 # google_password = google_data[1]
 
 
+
 @app.route('/')
 def index():
     return render_template("index.html")
@@ -37,6 +38,9 @@ def save_setup():
     df.to_csv("data.csv")
     return render_template("index.html")
 
+@app.route('/main')
+def main():
+    return render_template("main.html", setup=setup)
 
 
 if __name__ == '__main__':
