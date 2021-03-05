@@ -1,5 +1,9 @@
 (/) Setup page (earnings, purchases, savings, present daily spend)
 Pacing page and record spending (Graph for how much I can spend) & Wishlist of items I want
+    Have a button take you to the main.html page
+    When the button is pressed, it reviews the CSV files and builds a PNG matplotlib plot (see Jupyter notebook)
+    Place the png plot in the HTML of main.html
+    Add more things to this main.html page as well
 Read/write to a CSV for a database
 Login
 

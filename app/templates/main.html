@@ -7,17 +7,95 @@
     <title>Title</title>
 </head>
 <body>
-<div id="vis"></div>
+<h3>You Have This Much Available to Spend.  Buy Anything You Want.</h2>
+<div id="vis"><img src="{{ url_for('static', filename='plot.png') }}"</div>
+<h3>Record All Your Purchases for the Month</h2>
+
+<label for="month-selector">Month: </label><select name="month-selector" id="month-selector">
+  <option value="January">January</option>
+  <option value="February">February</option>
+  <option value="March" selected>March</option>
+</select>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Day #</th>
+      <th scope="col">Purchase</th>
+      <th scope="col">Cost</th>
+      <th scope="col">Category</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td><input type="text" name="date1" id="date1" placeholder="" value=""><br></td>
+      <td><input type="text" name="purchase1" id="purchase1" placeholder="" value=""><br></td>
+      <td><input type="text" name="cost1" id="cost1" placeholder="" value=""><br></td>
+      <td><select name="category1" id="category1">
+          <option value="need">Need</option>
+          <option value="want" selected>Want</option>
+          </select>
+      </td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td><input type="text" name="date2" id="date2" placeholder="" value=""><br></td>
+      <td><input type="text" name="purchase2" id="purchase2" placeholder="" value=""><br></td>
+      <td><input type="text" name="cost2" id="cost2" placeholder="" value=""><br></td>
+      <td><select name="category2" id="category2">
+          <option value="need">Need</option>
+          <option value="want" selected>Want</option>
+          </select>
+        </td>
+      </tr>
+  </tbody>
+
+</table>
+
+<h3>Write Your Wishlist of Items Here</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Purchase</th>
+        <th scope="col">Cost</th>
+        <th scope="col">Category</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td><input type="text" name="purchase1b" id="purchase1b" placeholder="" value=""><br></td>
+        <td><input type="text" name="cost1b" id="cost1b" placeholder="" value=""><br></td>
+        <td><select name="category1b" id="category1b">
+            <option value="need">Need</option>
+            <option value="want" selected>Want</option>
+            </select>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td><input type="text" name="purchase2b" id="purchase2b" placeholder="" value=""><br></td>
+        <td><input type="text" name="cost2b" id="cost2b" placeholder="" value=""><br></td>
+        <td><select name="category2b" id="category2b">
+            <option value="need">Need</option>
+            <option value="want" selected>Want</option>
+            </select>
+          </td>
+        </tr>
+    </tbody>
+
+  </table>
+
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <!-- Latest compiled and minified JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-  <!-- Vega is for altair plots loaded from json files -->
-  <script src="https://cdn.jsdelivr.net/npm/vega@5.19.1"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.0.0"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.15.1"></script>
 
-  <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+  <!-- <script src="{{ url_for('static', filename='script.js') }}"></script> -->
 
 
 
