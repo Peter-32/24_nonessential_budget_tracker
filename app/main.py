@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import matplotlib
 import numpy as np
 from os import path
+import os
 from datetime import datetime, timedelta
 
 def subtract_two_numbers(a, b):
@@ -25,7 +26,7 @@ def index():
 @app.route('/setup')
 def setup():
     if path.exists("data.csv"):
-        setup = pd.read_csv("data.csv").iloc[0].to_dict()
+        setup = pd.read_csv("data.csv").fillna('').iloc[0].to_dict()
     else:
         setup = {'earnings': "2100",
              'purchase1': "Rent", 'cost1': "500", 'category1': "need",
@@ -70,7 +71,6 @@ def main():
     date = created.replace(day=1)
     dfs = []
     while date < first_day_next_month_from_today:
-        print(date)
         # Calculate days this month and budget per day for the month
         first_day_next_month = (date + timedelta(days=35)).replace(day=1)
         first_day_this_month = date
@@ -106,11 +106,15 @@ def main():
     # Get the funds column
     df['funds'] = df[['funds_with_no_spending', 'cost']].apply(lambda x: subtract_two_numbers(*x), axis=1).astype(float)
 
-    funds_as_of_today = df.loc[df['date'] == datetime.now().strftime("%Y-%m-%d")]
+    funds_as_of_today = df.loc[df['date'] == datetime.now().strftime("%Y-%m-%d")].iloc[0].funds
+    print(df, funds_as_of_today)
     df = df.set_index("date")
     matplotlib.use('Agg')
     plt.plot(df.funds)
-    plt.savefig('app/static/plot.png')
+    filepath = 'app/static/plot.png'
+    if path.exists(filepath):
+        os.remove(filepath)
+    plt.savefig(filepath)
 
     return render_template("main.html", funds_as_of_today=funds_as_of_today)
 

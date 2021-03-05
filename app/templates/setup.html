@@ -10,7 +10,7 @@
 <h2>Setup</h2>
   <form action="/save-setup" method="POST">
     <label for="salary">Monthly Net Earnings:</label>
-    <input type="text" name="salary" id="salary" value="{{setup['earnings']}}"><br>
+    <input type="text" name="salary" id="salary" onfocusout="sumInputs()" value="{{setup['salary']}}"><br>
     <p>Next, fill in what purchases always occur each month:</p>
 
 
@@ -207,11 +207,11 @@
       </tbody>
     </table>
 
-    <span>How much remains: </span><span id="total_calculation">1600</span><br>
+    <span>How much remains: </span><span id="total_calculation"></span><br>
     <p>What remains is split between saving and purchases.</p>
 
     <label for="saving">How much do you want to save?</label>
-    <input type="text" name="saving" id="saving"><br>
+    <input type="text" name="saving" id="saving" value="{{setup['saving']}}"><br>
     <button type="submit" class="btn btn-success", value="Submit">Save Setup</button>
 
   </form>
@@ -221,7 +221,6 @@
   <!-- Latest compiled and minified JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   <script>
-  console.log("ABC")
   function sumInputs() {
     sum = 0
     parsed = parseInt(document.getElementById('salary').value, 10)
@@ -234,6 +233,10 @@
     }
     if (sum < 0) { sum = 0}
     document.getElementById("total_calculation").innerHTML = sum;
+  }
+
+  window.onload = function() {
+   sumInputs();
   }
   </script>
 </body>
