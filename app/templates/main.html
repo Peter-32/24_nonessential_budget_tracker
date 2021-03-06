@@ -8,7 +8,7 @@
 </head>
 <body>
 <h3>You Have This Much Available to Spend.  Buy Anything You Want.</h2>
-<div id="vis"><img src="{{ url_for('static', filename='plot.png') }}"</div>
+<div id="vis"><img src="{{ url_for('static', filename=data['filename']) }}"</div>
 <h3>Record All Your Purchases for the Month</h2>
 
 <form action="/save-changes" method="POST">

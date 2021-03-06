@@ -5,6 +5,7 @@ import matplotlib
 import numpy as np
 from os import path
 import os
+from glob import glob
 from datetime import datetime, timedelta
 
 def subtract_two_numbers(a, b):
@@ -110,10 +111,14 @@ def main():
     df = df.set_index("date")
     matplotlib.use('Agg')
     plt.plot(df.funds)
-    filepath = 'app/static/plot.png'
-    if path.exists(filepath):
-        os.remove(filepath)
-    plt.savefig(filepath)
+
+    # Get new name.  Delete old file
+    my_directory = "/Users/petermyers/Desktop/high_quality_programs/24_nonessential_budget_tracker/app/static/"
+    files = glob(my_directory + "*")
+    my_file = [x for x in files if ".png" in x][0]
+    current_number = int(my_file[:-4].split("/static/plot")[1])
+    os.remove(my_directory + "plot" + str(current_number) + ".png")
+    plt.savefig(my_directory + "plot" + str(current_number+1) + ".png")
     plt.clf()
 
     # Initialize data
