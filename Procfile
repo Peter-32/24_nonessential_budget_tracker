@@ -1,1 +1,1 @@
-web: gunicorn nonessential-budget-tracker.wsgi --log-file -
+web: gunicorn nonessential-budget-tracker
