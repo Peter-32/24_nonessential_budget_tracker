@@ -58,7 +58,7 @@ def save_setup():
     return render_template("index.html")
 
 @app.route('/main')
-def main():
+def main(chosen_month=None, chosen_year=None):
     # Calculate monthly total budget
     setup = pd.read_csv("data.csv").iloc[0].to_dict()
     total_budget = 0 if pd.isnull(setup['salary']) else setup['salary']
@@ -113,7 +113,8 @@ def main():
     plt.plot(df.funds)
 
     # Get new name.  Delete old file
-    my_directory = "/Users/petermyers/Desktop/high_quality_programs/24_nonessential_budget_tracker/app/static/"
+    my_directory = os.getcwd() + "app/static/"
+
     files = glob(my_directory + "*")
     my_file = [x for x in files if ".png" in x][0]
     current_number = int(my_file[:-4].split("/static/plot")[1])
@@ -122,7 +123,7 @@ def main():
     plt.clf()
 
     # Initialize data
-    data = {'funds_as_of_today': funds_as_of_today,
+    data = {'funds_as_of_today': funds_as_of_today, 'filename': "plot" + str(current_number+1) + ".png",
     'date1': '', 'purchase1': '', 'cost1': '', 'category1': 'need',
     'date2': '', 'purchase2': '', 'cost2': '', 'category2': 'need',
     'date3': '', 'purchase3': '', 'cost3': '', 'category3': 'need',
@@ -148,44 +149,59 @@ def main():
     'date23': '', 'purchase23': '', 'cost23': '', 'category23': 'need',
     'date24': '', 'purchase24': '', 'cost24': '', 'category24': 'need',
     'date25': '', 'purchase25': '', 'cost25': '', 'category25': 'need',
-    'date1b': '', 'purchase1b': '', 'cost1b': '', 'category1b': 'need',
-    'date2b': '', 'purchase2b': '', 'cost2b': '', 'category2b': 'need',
-    'date3b': '', 'purchase3b': '', 'cost3b': '', 'category3b': 'need',
-    'date4b': '', 'purchase4b': '', 'cost4b': '', 'category4b': 'need',
-    'date5b': '', 'purchase5b': '', 'cost5b': '', 'category5b': 'need',
-    'date6b': '', 'purchase6b': '', 'cost6b': '', 'category6b': 'need',
-    'date7b': '', 'purchase7b': '', 'cost7b': '', 'category7b': 'need',
-    'date8b': '', 'purchase8b': '', 'cost8b': '', 'category8b': 'need',
-    'date9b': '', 'purchase9b': '', 'cost9b': '', 'category9b': 'need',
-    'date10b': '', 'purchase10b': '', 'cost10b': '', 'category10b': 'need',
-    'date11b': '', 'purchase11b': '', 'cost11b': '', 'category11b': 'need',
-    'date12b': '', 'purchase12b': '', 'cost12b': '', 'category12b': 'need',
-    'date13b': '', 'purchase13b': '', 'cost13b': '', 'category13b': 'need',
-    'date14b': '', 'purchase14b': '', 'cost14b': '', 'category14b': 'need',
-    'date15b': '', 'purchase15b': '', 'cost15b': '', 'category15b': 'need',
-    'date16b': '', 'purchase16b': '', 'cost16b': '', 'category16b': 'need',
-    'date17b': '', 'purchase17b': '', 'cost17b': '', 'category17b': 'need',
-    'date18b': '', 'purchase18b': '', 'cost18b': '', 'category18b': 'need',
-    'date19b': '', 'purchase19b': '', 'cost19b': '', 'category19b': 'need',
-    'date20b': '', 'purchase20b': '', 'cost20b': '', 'category20b': 'need',
-    'date21b': '', 'purchase21b': '', 'cost21b': '', 'category21b': 'need',
-    'date22b': '', 'purchase22b': '', 'cost22b': '', 'category22b': 'need',
-    'date23b': '', 'purchase23b': '', 'cost23b': '', 'category23b': 'need',
-    'date24b': '', 'purchase24b': '', 'cost24b': '', 'category24b': 'need',
-    'date25b': '', 'purchase25b': '', 'cost25b': '', 'category25b': ''
+    'purchase1b': '', 'cost1b': '', 'category1b': 'need',
+    'purchase2b': '', 'cost2b': '', 'category2b': 'need',
+    'purchase3b': '', 'cost3b': '', 'category3b': 'need',
+    'purchase4b': '', 'cost4b': '', 'category4b': 'need',
+    'purchase5b': '', 'cost5b': '', 'category5b': 'need',
+    'purchase6b': '', 'cost6b': '', 'category6b': 'need',
+    'purchase7b': '', 'cost7b': '', 'category7b': 'need',
+    'purchase8b': '', 'cost8b': '', 'category8b': 'need',
+    'purchase9b': '', 'cost9b': '', 'category9b': 'need',
+    'purchase10b': '', 'cost10b': '', 'category10b': 'need',
+    'purchase11b': '', 'cost11b': '', 'category11b': 'need',
+    'purchase12b': '', 'cost12b': '', 'category12b': 'need',
+    'purchase13b': '', 'cost13b': '', 'category13b': 'need',
+    'purchase14b': '', 'cost14b': '', 'category14b': 'need',
+    'purchase15b': '', 'cost15b': '', 'category15b': 'need',
+    'purchase16b': '', 'cost16b': '', 'category16b': 'need',
+    'purchase17b': '', 'cost17b': '', 'category17b': 'need',
+    'purchase18b': '', 'cost18b': '', 'category18b': 'need',
+    'purchase19b': '', 'cost19b': '', 'category19b': 'need',
+    'purchase20b': '', 'cost20b': '', 'category20b': 'need',
+    'purchase21b': '', 'cost21b': '', 'category21b': 'need',
+    'purchase22b': '', 'cost22b': '', 'category22b': 'need',
+    'purchase23b': '', 'cost23b': '', 'category23b': 'need',
+    'purchase24b': '', 'cost24b': '', 'category24b': 'need',
+    'purchase25b': '', 'cost25b': '', 'category25b': ''
     }
 
     if path.exists("purchases.csv"):
-        # Load df to build data more
+
+        if chosen_month == None and chosen_year == None:
+            year = str(datetime.now().year)
+            month = str(datetime.now().month).zfill(2)
+        else:
+            year = str(chosen_year)
+            month = str(str(chosen_month).zfill(2))
+        # Update data
+        data['year'] = year
+        data['month'] = month
+
+        # Load purchases df to build data more
         df = pd.read_csv("purchases.csv")
-        year = str(datetime.now().year)
-        month = str(datetime.now().month).zfill(2)
         df['year'] = df['date'].apply(lambda x: x[0:4])
         df['month'] = df['date'].apply(lambda x: x[5:7])
         df['day'] = df['date'].apply(lambda x: x[8:10])
-        df = df.loc[(df['year'] == year) | (df['month'] == month)]
+        df = df.loc[(df['year'] == year) & (df['month'] == month)]
         df.drop(['year', 'month'], axis='columns', inplace=True)
         df.fillna('', inplace=True)
+
+        # Load wishlist df2 to build data more
+        if path.exists("wishlist.csv"):
+            wishlist_data = pd.read_csv("wishlist.csv").fillna('').iloc[0].to_dict()
+            for key, value in wishlist_data.items():
+                data[key] = value
 
         # Fill data
         for index, row in df.iterrows():
@@ -195,8 +211,14 @@ def main():
             data[f'cost{row_number}'] = row['cost']
             data[f'category{row_number}'] = row['category']
 
-    print(data)
     return render_template("main.html", data=data)
+
+@app.route('/load-month', methods = ['POST'])
+def load_month():
+    result = request.form.to_dict(flat=True)
+    chosen_month = result['month-selector1']
+    chosen_year = result['year-selector1']
+    return main(chosen_month=chosen_month, chosen_year=chosen_year)
 
 @app.route('/save-changes', methods = ['POST'])
 def save_changes():
@@ -228,6 +250,11 @@ def save_changes():
 
     # Save purchases file
     df.to_csv("purchases.csv", index=False)
+
+    # Work on the wishlist
+    result = {k: [v] for (k, v) in result.items() if k.endswith('b')}
+    df2 = pd.DataFrame(result)
+    df2.to_csv("wishlist.csv")
 
     # Render the main.html
     return main()

@@ -9,27 +9,84 @@
 <body>
 <h3>You Have This Much Available to Spend.  Buy Anything You Want.</h2>
 <div id="vis"><img src="{{ url_for('static', filename=data['filename']) }}"</div>
+<h3>Balance Today: ${{data['funds_as_of_today']|round}}</h3>
 <h3>Record All Your Purchases for the Month</h2>
 
-<form action="/save-changes" method="POST">
-  <label for="year-selector">Year: </label><select name="year-selector" id="year-selector">
-    <option value="2021" selected>2021</option>
+<form action="/load-month" method="POST">
+  <label for="year-selector1">Year: </label><select name="year-selector1" id="year-selector1">
+    {% if data['year'] == '2021' %}
+      <option value="2021" selected>2021</option>
+    {% else %}
+      <option value="2021">2021</option>
+    {% endif %}
   </select>
-<label for="month-selector">Month: </label><select name="month-selector" id="month-selector">
-  <option value="01">January</option>
-  <option value="02">February</option>
-  <option value="03" selected>March</option>
-  <option value="04">April</option>
-  <option value="05">May</option>
-  <option value="06">June</option>
-  <option value="07">July</option>
-  <option value="08">August</option>
-  <option value="09">September</option>
-  <option value="10">October</option>
-  <option value="11">November</option>
-  <option value="12">December</option>
+<label for="month-selector1">Month: </label><select name="month-selector1" id="month-selector1">
+  {% if data['month'] == '01' %}
+    <option value="01" selected>January</option>
+  {% else %}
+    <option value="01">January</option>
+  {% endif %}
+  {% if data['month'] == '02' %}
+    <option value="02" selected>February</option>
+  {% else %}
+    <option value="02">February</option>
+  {% endif %}
+  {% if data['month'] == '03' %}
+    <option value="03" selected>March</option>
+  {% else %}
+    <option value="03">March</option>
+  {% endif %}
+  {% if data['month'] == '04' %}
+    <option value="04" selected>April</option>
+  {% else %}
+    <option value="04">April</option>
+  {% endif %}
+  {% if data['month'] == '05' %}
+    <option value="05" selected>May</option>
+  {% else %}
+    <option value="05">May</option>
+  {% endif %}
+  {% if data['month'] == '06' %}
+    <option value="06" selected>June</option>
+  {% else %}
+    <option value="06">June</option>
+  {% endif %}
+  {% if data['month'] == '07' %}
+    <option value="07" selected>July</option>
+  {% else %}
+    <option value="07">July</option>
+  {% endif %}
+  {% if data['month'] == '08' %}
+    <option value="08" selected>August</option>
+  {% else %}
+    <option value="08">August</option>
+  {% endif %}
+  {% if data['month'] == '09' %}
+    <option value="09" selected>September</option>
+  {% else %}
+    <option value="09">September</option>
+  {% endif %}
+  {% if data['month'] == '10' %}
+    <option value="10" selected>October</option>
+  {% else %}
+    <option value="10">October</option>
+  {% endif %}
+  {% if data['month'] == '11' %}
+    <option value="11" selected>November</option>
+  {% else %}
+    <option value="11">November</option>
+  {% endif %}
+  {% if data['month'] == '12' %}
+    <option value="12" selected>December</option>
+  {% else %}
+    <option value="12">December</option>
+  {% endif %}
 </select>
-
+<button type="submit" class="btn btn-success", value="Submit">Load Month</button>
+</form>
+<form action="/save-changes" method="POST">
+<input hidden type="text" name="month-selector" id="month-selector" placeholder="" value="{{data['month']}}">
+<input hidden type="text" name="year-selector" id="year-selector" placeholder="" value="{{data['year']}}">
 <table class="table">
   <thead>
     <tr>
@@ -582,8 +639,8 @@
       <tr>
           <th scope="row">1</th>
 
-          <td><input type="text" name="purchase1b" id="purchase1b" placeholder="" value=""><br></td>
-          <td><input type="text" name="cost1b" id="cost1b" placeholder="" value=""><br></td>
+          <td><input type="text" name="purchase1b" id="purchase1b" placeholder="" value="{{data['purchase1b']}}"><br></td>
+          <td><input type="text" name="cost1b" id="cost1b" placeholder="" value="{{data['cost1b']}}"><br></td>
           <td><select name="category1b" id="category1">
             {% if data['category1b'] == 'need' %}
               <option value="need" selected>Need</option>
@@ -603,8 +660,8 @@
             <tr>
           <th scope="row">2</th>
 
-          <td><input type="text" name="purchase2b" id="purchase2b" placeholder="" value=""><br></td>
-          <td><input type="text" name="cost2b" id="cost2b" placeholder="" value=""><br></td>
+          <td><input type="text" name="purchase2b" id="purchase2b" placeholder="" value="{{data['purchase2b']}}"><br></td>
+          <td><input type="text" name="cost2b" id="cost2b" placeholder="" value="{{data['cost2b']}}"><br></td>
           <td><select name="category2b" id="category2">
             {% if data['category2b'] == 'need' %}
               <option value="need" selected>Need</option>
@@ -624,8 +681,8 @@
             <tr>
           <th scope="row">3</th>
 
-          <td><input type="text" name="purchase3b" id="purchase3b" placeholder="" value=""><br></td>
-          <td><input type="text" name="cost3b" id="cost3b" placeholder="" value=""><br></td>
+          <td><input type="text" name="purchase3b" id="purchase3b" placeholder="" value="{{data['purchase3b']}}"><br></td>
+          <td><input type="text" name="cost3b" id="cost3b" placeholder="" value="{{data['cost3b']}}"><br></td>
           <td><select name="category3b" id="category3">
             {% if data['category3b'] == 'need' %}
               <option value="need" selected>Need</option>
@@ -645,8 +702,8 @@
             <tr>
           <th scope="row">4</th>
 
-          <td><input type="text" name="purchase4b" id="purchase4b" placeholder="" value=""><br></td>
-          <td><input type="text" name="cost4b" id="cost4b" placeholder="" value=""><br></td>
+          <td><input type="text" name="purchase4b" id="purchase4b" placeholder="" value="{{data['purchase4b']}}"><br></td>
+          <td><input type="text" name="cost4b" id="cost4b" placeholder="" value="{{data['cost4b']}}"><br></td>
           <td><select name="category4b" id="category4">
             {% if data['category4b'] == 'need' %}
               <option value="need" selected>Need</option>
@@ -666,8 +723,8 @@
             <tr>
           <th scope="row">5</th>
 
-          <td><input type="text" name="purchase5b" id="purchase5b" placeholder="" value=""><br></td>
-          <td><input type="text" name="cost5b" id="cost5b" placeholder="" value=""><br></td>
+          <td><input type="text" name="purchase5b" id="purchase5b" placeholder="" value="{{data['purchase5b']}}"><br></td>
+          <td><input type="text" name="cost5b" id="cost5b" placeholder="" value="{{data['cost5b']}}"><br></td>
           <td><select name="category5b" id="category5">
             {% if data['category5b'] == 'need' %}
               <option value="need" selected>Need</option>
@@ -687,8 +744,8 @@
             <tr>
           <th scope="row">6</th>
 
-          <td><input type="text" name="purchase6b" id="purchase6b" placeholder="" value=""><br></td>
-          <td><input type="text" name="cost6b" id="cost6b" placeholder="" value=""><br></td>
+          <td><input type="text" name="purchase6b" id="purchase6b" placeholder="" value="{{data['purchase6b']}}"><br></td>
+          <td><input type="text" name="cost6b" id="cost6b" placeholder="" value="{{data['cost6b']}}"><br></td>
           <td><select name="category6b" id="category6">
             {% if data['category6b'] == 'need' %}
               <option value="need" selected>Need</option>
@@ -708,8 +765,8 @@
             <tr>
           <th scope="row">7</th>
 
-          <td><input type="text" name="purchase7b" id="purchase7b" placeholder="" value=""><br></td>
-          <td><input type="text" name="cost7b" id="cost7b" placeholder="" value=""><br></td>
+          <td><input type="text" name="purchase7b" id="purchase7b" placeholder="" value="{{data['purchase7b']}}"><br></td>
+          <td><input type="text" name="cost7b" id="cost7b" placeholder="" value="{{data['cost7b']}}"><br></td>
           <td><select name="category7b" id="category7">
             {% if data['category7b'] == 'need' %}
               <option value="need" selected>Need</option>
@@ -729,8 +786,8 @@
             <tr>
           <th scope="row">8</th>
 
-          <td><input type="text" name="purchase8b" id="purchase8b" placeholder="" value=""><br></td>
-          <td><input type="text" name="cost8b" id="cost8b" placeholder="" value=""><br></td>
+          <td><input type="text" name="purchase8b" id="purchase8b" placeholder="" value="{{data['purchase8b']}}"><br></td>
+          <td><input type="text" name="cost8b" id="cost8b" placeholder="" value="{{data['cost8b']}}"><br></td>
           <td><select name="category8b" id="category8">
             {% if data['category8b'] == 'need' %}
               <option value="need" selected>Need</option>
@@ -750,8 +807,8 @@
             <tr>
           <th scope="row">9</th>
 
-          <td><input type="text" name="purchase9b" id="purchase9b" placeholder="" value=""><br></td>
-          <td><input type="text" name="cost9b" id="cost9b" placeholder="" value=""><br></td>
+          <td><input type="text" name="purchase9b" id="purchase9b" placeholder="" value="{{data['purchase9b']}}"><br></td>
+          <td><input type="text" name="cost9b" id="cost9b" placeholder="" value="{{data['cost9b']}}"><br></td>
           <td><select name="category9b" id="category9">
             {% if data['category9b'] == 'need' %}
               <option value="need" selected>Need</option>
@@ -771,8 +828,8 @@
             <tr>
           <th scope="row">10</th>
 
-          <td><input type="text" name="purchase10b" id="purchase10b" placeholder="" value=""><br></td>
-          <td><input type="text" name="cost10b" id="cost10b" placeholder="" value=""><br></td>
+          <td><input type="text" name="purchase10b" id="purchase10b" placeholder="" value="{{data['purchase10b']}}"><br></td>
+          <td><input type="text" name="cost10b" id="cost10b" placeholder="" value="{{data['cost10b']}}"><br></td>
           <td><select name="category10b" id="category10">
             {% if data['category10b'] == 'need' %}
               <option value="need" selected>Need</option>
@@ -792,8 +849,8 @@
             <tr>
           <th scope="row">11</th>
 
-          <td><input type="text" name="purchase11b" id="purchase11b" placeholder="" value=""><br></td>
-          <td><input type="text" name="cost11b" id="cost11b" placeholder="" value=""><br></td>
+          <td><input type="text" name="purchase11b" id="purchase11b" placeholder="" value="{{data['purchase11b']}}"><br></td>
+          <td><input type="text" name="cost11b" id="cost11b" placeholder="" value="{{data['cost11b']}}"><br></td>
           <td><select name="category11b" id="category11">
             {% if data['category11b'] == 'need' %}
               <option value="need" selected>Need</option>
@@ -813,8 +870,8 @@
             <tr>
           <th scope="row">12</th>
 
-          <td><input type="text" name="purchase12b" id="purchase12b" placeholder="" value=""><br></td>
-          <td><input type="text" name="cost12b" id="cost12b" placeholder="" value=""><br></td>
+          <td><input type="text" name="purchase12b" id="purchase12b" placeholder="" value="{{data['purchase12b']}}"><br></td>
+          <td><input type="text" name="cost12b" id="cost12b" placeholder="" value="{{data['cost12b']}}"><br></td>
           <td><select name="category12b" id="category12">
             {% if data['category12b'] == 'need' %}
               <option value="need" selected>Need</option>
@@ -834,8 +891,8 @@
             <tr>
           <th scope="row">13</th>
 
-          <td><input type="text" name="purchase13b" id="purchase13b" placeholder="" value=""><br></td>
-          <td><input type="text" name="cost13b" id="cost13b" placeholder="" value=""><br></td>
+          <td><input type="text" name="purchase13b" id="purchase13b" placeholder="" value="{{data['purchase13b']}}"><br></td>
+          <td><input type="text" name="cost13b" id="cost13b" placeholder="" value="{{data['cost13b']}}"><br></td>
           <td><select name="category13b" id="category13">
             {% if data['category13b'] == 'need' %}
               <option value="need" selected>Need</option>
@@ -855,8 +912,8 @@
             <tr>
           <th scope="row">14</th>
 
-          <td><input type="text" name="purchase14b" id="purchase14b" placeholder="" value=""><br></td>
-          <td><input type="text" name="cost14b" id="cost14b" placeholder="" value=""><br></td>
+          <td><input type="text" name="purchase14b" id="purchase14b" placeholder="" value="{{data['purchase14b']}}"><br></td>
+          <td><input type="text" name="cost14b" id="cost14b" placeholder="" value="{{data['cost14b']}}"><br></td>
           <td><select name="category14b" id="category14">
             {% if data['category14b'] == 'need' %}
               <option value="need" selected>Need</option>
@@ -876,8 +933,8 @@
             <tr>
           <th scope="row">15</th>
 
-          <td><input type="text" name="purchase15b" id="purchase15b" placeholder="" value=""><br></td>
-          <td><input type="text" name="cost15b" id="cost15b" placeholder="" value=""><br></td>
+          <td><input type="text" name="purchase15b" id="purchase15b" placeholder="" value="{{data['purchase15b']}}"><br></td>
+          <td><input type="text" name="cost15b" id="cost15b" placeholder="" value="{{data['cost15b']}}"><br></td>
           <td><select name="category15b" id="category15">
             {% if data['category15b'] == 'need' %}
               <option value="need" selected>Need</option>
@@ -897,8 +954,8 @@
             <tr>
           <th scope="row">16</th>
 
-          <td><input type="text" name="purchase16b" id="purchase16b" placeholder="" value=""><br></td>
-          <td><input type="text" name="cost16b" id="cost16b" placeholder="" value=""><br></td>
+          <td><input type="text" name="purchase16b" id="purchase16b" placeholder="" value="{{data['purchase16b']}}"><br></td>
+          <td><input type="text" name="cost16b" id="cost16b" placeholder="" value="{{data['cost16b']}}"><br></td>
           <td><select name="category16b" id="category16">
             {% if data['category16b'] == 'need' %}
               <option value="need" selected>Need</option>
@@ -918,8 +975,8 @@
             <tr>
           <th scope="row">17</th>
 
-          <td><input type="text" name="purchase17b" id="purchase17b" placeholder="" value=""><br></td>
-          <td><input type="text" name="cost17b" id="cost17b" placeholder="" value=""><br></td>
+          <td><input type="text" name="purchase17b" id="purchase17b" placeholder="" value="{{data['purchase17b']}}"><br></td>
+          <td><input type="text" name="cost17b" id="cost17b" placeholder="" value="{{data['cost17b']}}"><br></td>
           <td><select name="category17b" id="category17">
             {% if data['category17b'] == 'need' %}
               <option value="need" selected>Need</option>
@@ -939,8 +996,8 @@
             <tr>
           <th scope="row">18</th>
 
-          <td><input type="text" name="purchase18b" id="purchase18b" placeholder="" value=""><br></td>
-          <td><input type="text" name="cost18b" id="cost18b" placeholder="" value=""><br></td>
+          <td><input type="text" name="purchase18b" id="purchase18b" placeholder="" value="{{data['purchase18b']}}"><br></td>
+          <td><input type="text" name="cost18b" id="cost18b" placeholder="" value="{{data['cost18b']}}"><br></td>
           <td><select name="category18b" id="category18">
             {% if data['category18b'] == 'need' %}
               <option value="need" selected>Need</option>
@@ -960,8 +1017,8 @@
             <tr>
           <th scope="row">19</th>
 
-          <td><input type="text" name="purchase19b" id="purchase19b" placeholder="" value=""><br></td>
-          <td><input type="text" name="cost19b" id="cost19b" placeholder="" value=""><br></td>
+          <td><input type="text" name="purchase19b" id="purchase19b" placeholder="" value="{{data['purchase19b']}}"><br></td>
+          <td><input type="text" name="cost19b" id="cost19b" placeholder="" value="{{data['cost19b']}}"><br></td>
           <td><select name="category19b" id="category19">
             {% if data['category19b'] == 'need' %}
               <option value="need" selected>Need</option>
@@ -981,8 +1038,8 @@
             <tr>
           <th scope="row">20</th>
 
-          <td><input type="text" name="purchase20b" id="purchase20b" placeholder="" value=""><br></td>
-          <td><input type="text" name="cost20b" id="cost20b" placeholder="" value=""><br></td>
+          <td><input type="text" name="purchase20b" id="purchase20b" placeholder="" value="{{data['purchase20b']}}"><br></td>
+          <td><input type="text" name="cost20b" id="cost20b" placeholder="" value="{{data['cost20b']}}"><br></td>
           <td><select name="category20b" id="category20">
             {% if data['category20b'] == 'need' %}
               <option value="need" selected>Need</option>
@@ -1002,8 +1059,8 @@
             <tr>
           <th scope="row">21</th>
 
-          <td><input type="text" name="purchase21b" id="purchase21b" placeholder="" value=""><br></td>
-          <td><input type="text" name="cost21b" id="cost21b" placeholder="" value=""><br></td>
+          <td><input type="text" name="purchase21b" id="purchase21b" placeholder="" value="{{data['purchase21b']}}"><br></td>
+          <td><input type="text" name="cost21b" id="cost21b" placeholder="" value="{{data['cost21b']}}"><br></td>
           <td><select name="category21b" id="category21">
             {% if data['category21b'] == 'need' %}
               <option value="need" selected>Need</option>
@@ -1023,8 +1080,8 @@
             <tr>
           <th scope="row">22</th>
 
-          <td><input type="text" name="purchase22b" id="purchase22b" placeholder="" value=""><br></td>
-          <td><input type="text" name="cost22b" id="cost22b" placeholder="" value=""><br></td>
+          <td><input type="text" name="purchase22b" id="purchase22b" placeholder="" value="{{data['purchase22b']}}"><br></td>
+          <td><input type="text" name="cost22b" id="cost22b" placeholder="" value="{{data['cost22b']}}"><br></td>
           <td><select name="category22b" id="category22">
             {% if data['category22b'] == 'need' %}
               <option value="need" selected>Need</option>
@@ -1044,8 +1101,8 @@
             <tr>
           <th scope="row">23</th>
 
-          <td><input type="text" name="purchase23b" id="purchase23b" placeholder="" value=""><br></td>
-          <td><input type="text" name="cost23b" id="cost23b" placeholder="" value=""><br></td>
+          <td><input type="text" name="purchase23b" id="purchase23b" placeholder="" value="{{data['purchase23b']}}"><br></td>
+          <td><input type="text" name="cost23b" id="cost23b" placeholder="" value="{{data['cost23b']}}"><br></td>
           <td><select name="category23b" id="category23">
             {% if data['category23b'] == 'need' %}
               <option value="need" selected>Need</option>
@@ -1065,8 +1122,8 @@
             <tr>
           <th scope="row">24</th>
 
-          <td><input type="text" name="purchase24b" id="purchase24b" placeholder="" value=""><br></td>
-          <td><input type="text" name="cost24b" id="cost24b" placeholder="" value=""><br></td>
+          <td><input type="text" name="purchase24b" id="purchase24b" placeholder="" value="{{data['purchase24b']}}"><br></td>
+          <td><input type="text" name="cost24b" id="cost24b" placeholder="" value="{{data['cost24b']}}"><br></td>
           <td><select name="category24b" id="category24">
             {% if data['category24b'] == 'need' %}
               <option value="need" selected>Need</option>
@@ -1086,8 +1143,8 @@
             <tr>
           <th scope="row">25</th>
 
-          <td><input type="text" name="purchase25b" id="purchase25b" placeholder="" value=""><br></td>
-          <td><input type="text" name="cost25b" id="cost25b" placeholder="" value=""><br></td>
+          <td><input type="text" name="purchase25b" id="purchase25b" placeholder="" value="{{data['purchase25b']}}"><br></td>
+          <td><input type="text" name="cost25b" id="cost25b" placeholder="" value="{{data['cost25b']}}"><br></td>
           <td><select name="category25b" id="category25">
             {% if data['category25b'] == 'need' %}
               <option value="need" selected>Need</option>
