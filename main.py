@@ -113,7 +113,7 @@ def main(chosen_month=None, chosen_year=None):
     plt.plot(df.funds)
 
     # Get new name.  Delete old file
-    my_directory = os.getcwd() + "app/static/"
+    my_directory = os.getcwd() + "static/"
 
     files = glob(my_directory + "*")
     my_file = [x for x in files if ".png" in x][0]
