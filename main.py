@@ -104,7 +104,7 @@ def main(chosen_month=None, chosen_year=None):
     all_dates = pd.DataFrame(pd.date_range(start_date, end_date), columns=['date'])
     all_dates['date'] = all_dates['date'].astype(str)
 
-    # Minus out all purchases since beginning of time (Using a join)
+    # Minus out all purchases since beginning of time (Using a join) 
     purchases = pd.read_csv("purchases.csv")
     purchases = pd.DataFrame(purchases.groupby(['date'])['cost'].sum()).reset_index()
     purchases['date'] = purchases['date'].astype(str)
