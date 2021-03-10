@@ -97,15 +97,25 @@ def main(chosen_month=None, chosen_year=None):
     # Accumulate the funds based on new funds
     df['funds_with_no_spending'] = np.cumsum(df['new_funds'])
 
+    # Get dates
+    temp = sorted(df['date'])
+    start_date = temp[0]
+    end_date = temp[-1]
+    all_dates = pd.DataFrame(pd.date_range(start_date, end_date), columns=['date'])
+    all_dates['date'] = all_dates['date'].astype(str)
+
     # Minus out all purchases since beginning of time (Using a join)
     purchases = pd.read_csv("purchases.csv")
     purchases = pd.DataFrame(purchases.groupby(['date'])['cost'].sum()).reset_index()
     purchases['date'] = purchases['date'].astype(str)
+    purchases = all_dates.join(purchases.set_index(['date']), on='date', how='left').fillna(0)
+    purchases['cumulative_cost'] = np.cumsum(purchases['cost'])
+    print(purchases)
     df['date'] = df['date'].astype(str)
     df = df.join(purchases.set_index(['date']), on='date', how='left')
 
     # Get the funds column
-    df['funds'] = df[['funds_with_no_spending', 'cost']].apply(lambda x: subtract_two_numbers(*x), axis=1).astype(float)
+    df['funds'] = df[['funds_with_no_spending', 'cumulative_cost']].apply(lambda x: subtract_two_numbers(*x), axis=1).astype(float)
 
     funds_as_of_today = df.loc[df['date'] == datetime.now().strftime("%Y-%m-%d")].iloc[0].funds
     df = df.set_index("date")
@@ -113,7 +123,7 @@ def main(chosen_month=None, chosen_year=None):
     plt.plot(df.funds)
 
     # Get new name.  Delete old file
-    my_directory = os.getcwd() + "static/"
+    my_directory = os.getcwd() + "/static/"
 
     files = glob(my_directory + "*")
     my_file = [x for x in files if ".png" in x][0]
