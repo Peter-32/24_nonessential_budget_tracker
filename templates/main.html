@@ -7,7 +7,9 @@
     <title>Title</title>
 </head>
 <body>
-<h3>You Have This Much Available to Spend.  Buy Anything You Want.</h2>
+<h3>Balance Over Time</h3>
+<p>Buy anything you want with this extra money.</p>
+<p>Record your purchases and wish list below.</p>
 <div id="vis"><img src="{{ url_for('static', filename=data['filename']) }}"</div>
 <h3>Balance Today: ${{data['funds_as_of_today']|round}}</h3>
 <h3>Record All Your Purchases for the Month</h2>
@@ -82,11 +84,12 @@
     <option value="12">December</option>
   {% endif %}
 </select>
-<button type="submit" class="btn btn-success", value="Submit">Load Month</button>
+<button type="submit" class="btn btn-info", value="Submit">Load Month</button>
 </form>
 <form action="/save-changes" method="POST">
 <input hidden type="text" name="month-selector" id="month-selector" placeholder="" value="{{data['month']}}">
 <input hidden type="text" name="year-selector" id="year-selector" placeholder="" value="{{data['year']}}">
+<button type="submit" class="btn btn-success", value="Submit">Save Changes</button>
 <table class="table">
   <thead>
     <tr>
