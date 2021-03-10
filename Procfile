@@ -1,1 +1,1 @@
-web: gunicorn nonessential-budget-tracker
+web:gunicorn nonessential-budget-tracker:app
