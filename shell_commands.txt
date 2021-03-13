@@ -1,4 +1,5 @@
 spending() {
-python /Users/petermyers/Desktop/high_quality_programs/24_nonessential_budget_tracker/open_browser.py
-python /Users/petermyers/Desktop/high_quality_programs/24_nonessential_budget_tracker/main.py
+cd /Users/petermyers/Desktop/high_quality_programs/24_nonessential_budget_tracker/
+python open_browser.py
+python main.py
 }
