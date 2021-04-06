@@ -217,12 +217,13 @@ def main(chosen_month=None, chosen_year=None):
                 data[key] = value
 
         # Fill data
+        row_number = 1
         for index, row in df.iterrows():
-            row_number = index + 1
             data[f'date{row_number}'] = row['day']
             data[f'purchase{row_number}'] = row['purchase']
             data[f'cost{row_number}'] = row['cost']
             data[f'category{row_number}'] = row['category']
+            row_number += 1
 
     return render_template("main.html", data=data)
 
