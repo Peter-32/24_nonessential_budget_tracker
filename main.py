@@ -117,9 +117,11 @@ def main(chosen_month=None, chosen_year=None):
     df['funds'] = df[['funds_with_no_spending', 'cumulative_cost']].apply(lambda x: subtract_two_numbers(*x), axis=1).astype(float)
 
     funds_as_of_today = df.loc[df['date'] == datetime.now().strftime("%Y-%m-%d")].iloc[0].funds
+    df['date'] = df['date'].apply(lambda x: pd.to_datetime(x))
     df = df.set_index("date")
     matplotlib.use('Agg')
     plt.gcf().subplots_adjust(bottom=0.20)
+    plt.locator_params(nbins=4, axis='x')
     plt.plot(df.funds)
     plt.xticks(rotation = 45)
 
