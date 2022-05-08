@@ -21,6 +21,11 @@
     {% else %}
       <option value="2021">2021</option>
     {% endif %}
+    {% if data['year'] == '2022' %}
+      <option value="2022" selected>2022</option>
+    {% else %}
+      <option value="2022">2022</option>
+    {% endif %}
   </select>
 <label for="month-selector1">Month: </label><select name="month-selector1" id="month-selector1">
   {% if data['month'] == '01' %}
